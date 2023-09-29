@@ -27,7 +27,6 @@ const DEBOUNCE_TIME = 500;
 const RESULTS_QUERY_PARAM = "#search-results";
 
 (function init() {
-  resultsContainer = document.querySelector(RESULTS_QUERY_PARAM);
   resetDemo();
 })();
 
@@ -50,6 +49,7 @@ function search(q) {
     .filter((item) => item.toLowerCase().includes(q.toLowerCase()))
     .map((item) => JSON.parse(item));
 
+  const resultsContainer = document.querySelector(RESULTS_QUERY_PARAM);
   resultsContainer.innerHTML = updateResults(results, q);
 }
 
@@ -98,3 +98,17 @@ const queryVolunteers = debounce(
   (searchTerm) => search(searchTerm),
   DEBOUNCE_TIME
 );
+
+function addVolunteer(v) {
+  const mapped = {
+    name: v.supervisor,
+    orcid: v.orcid,
+    volunteers: [
+      {
+        institution: v.institution,
+      },
+    ],
+  };
+  const existing = JSON.parse(localStorage.getItem(DEMO_STORAGE_KEY) || "[]");
+  localStorage.setItem(DEMO_STORAGE_KEY, JSON.stringify([...existing, mapped]));
+}

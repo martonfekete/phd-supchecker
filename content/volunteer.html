@@ -1,0 +1,74 @@
+<p>
+  Fill out the form below to register as a voluntary feedback-provider on your
+  supervisors.
+</p>
+<p class="alert-info p-1">Note:
+  Your name and email address will never be public and it won't be provided
+  directly to anyone requesting feedback from you.
+</p>
+<form id="form">
+  <div class="form-group">
+    <label for="name">Your name</label>
+    <input
+      type="text"
+      class="form-control"
+      name="name"
+      id="name"
+      placeholder="Your name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="name">Supervisor's name</label>
+    <input
+      type="text"
+      class="form-control"
+      name="supervisor"
+      id="supervisor"
+      placeholder="Supervisor's name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="name">Supervisor's ORCID</label>
+    <input
+      type="text"
+      class="form-control"
+      name="orcid"
+      id="orcid"
+      placeholder="Supervisor's ORCID"
+    />
+  </div>
+  <div class="form-group">
+    <label for="name">Institution</label>
+    <input
+      type="text"
+      class="form-control"
+      name="institution"
+      id="institution"
+      placeholder="Institution"
+    />
+  </div>
+  <div class="form-group">
+    <label for="name">Contact email address</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      id="email"
+      placeholder="Contact email address"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+
+<script>
+    const form = document.querySelector('form')
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        const data = new FormData(form);
+        const value = {};
+        for (const pair of data.entries()) {
+            value[pair[0]] = pair[1];
+        }
+        window.addVolunteer(value);
+    });
+</script>
