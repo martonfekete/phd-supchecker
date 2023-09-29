@@ -37,7 +37,9 @@ function resetDemo() {
 }
 
 function search(q) {
-  if (q.length < START_SEARCH_LENGTH) {
+  const resultsContainer = document.querySelector(RESULTS_QUERY_PARAM);
+
+  if (q.length === 0) {
     resultsContainer.innerHTML = ``;
     return;
   }
@@ -49,7 +51,6 @@ function search(q) {
     .filter((item) => item.toLowerCase().includes(q.toLowerCase()))
     .map((item) => JSON.parse(item));
 
-  const resultsContainer = document.querySelector(RESULTS_QUERY_PARAM);
   resultsContainer.innerHTML = updateResults(results, q);
 }
 
@@ -61,8 +62,8 @@ function updateResults(results) {
   return results
     .map(
       (item) => `
-      <div class="col-6 col-md-4">
-        <div class="card">
+      <div class="col-sm-6 col-md-4">
+        <div class="card h-100">
           <div class="card-body">
               <h5 class="card-title">${item.name}</h5>
               <h6 class="card-subtitle mb-2 text-muted orcid">ORCID: ${

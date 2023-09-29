@@ -2,9 +2,9 @@
   Fill out the form below to register as a voluntary feedback-provider on your
   supervisors.
 </p>
-<p class="alert-info p-1">Note:
-  Your name and email address will never be public and it won't be provided
-  directly to anyone requesting feedback from you.
+<p class="alert-info p-1">
+  Note: Your name and email address will never be public and it won't be
+  provided directly to anyone requesting feedback from you.
 </p>
 <form id="form">
   <div class="form-group">
@@ -58,17 +58,28 @@
     />
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
-</div>
+</form>
+<div id="result"></div>
 
 <script>
-    const form = document.querySelector('form')
-    form.addEventListener('submit', event => {
-        event.preventDefault();
-        const data = new FormData(form);
-        const value = {};
-        for (const pair of data.entries()) {
-            value[pair[0]] = pair[1];
-        }
-        window.addVolunteer(value);
-    });
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const value = {};
+    for (const pair of data.entries()) {
+      value[pair[0]] = pair[1];
+    }
+
+    window.addVolunteer(value);
+
+    const resultContainer = document.querySelector("#result");
+    resultContainer.innerHTML = `<p class="alert alert-success">You have been successfully added as a volunteer!</p>`;
+
+    form.reset();
+
+    setTimeout(() => {
+      resultContainer.innerHTML = "";
+    }, 2000);
+  });
 </script>

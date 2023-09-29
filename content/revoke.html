@@ -1,1 +1,34 @@
-<div>Revoke!!!</div>
+<p>
+  Fill in your email address and we'll remove you from our list of volunteers.
+</p>
+
+<form id="form">
+  <div class="form-group">
+    <label for="name">Contact email address</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      id="email"
+      placeholder="Contact email address used for registration"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<div id="result"></div>
+
+<script>
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const resultContainer = document.querySelector("#result");
+    resultContainer.innerHTML = `<p class="alert alert-success">You have been successfully removed</p>`;
+
+    form.reset();
+
+    setTimeout(() => {
+      resultContainer.innerHTML = "";
+    }, 2000);
+  });
+</script>

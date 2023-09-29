@@ -14,25 +14,34 @@
     />
   </head>
   <body>
-    <ul class="nav" hx-trigger="click" hx-target="#content" hx-swap="innerHTML">
-      <li class="nav-item">
-        <span class="nav-link" hx-get="content/search.html">Search</span>
-      </li>
-      <li class="nav-item">
-        <span class="nav-link" hx-get="content/volunteer.html">Volunteer</span>
-      </li>
-      <li class="nav-item">
-        <span class="nav-link" hx-get="content/revoke.html">Revoke</span>
-      </li>
-    </ul>
-    <main class="container">
-      <h1>PhD supchecker</h1>
+    <nav class="navbar navbar-expand bg-light">
+      <ul
+        class="navbar-nav justify-content-between"
+        hx-trigger="click"
+        hx-target="#content"
+        hx-swap="innerHTML"
+      >
+        <li class="nav-item">
+          <span class="nav-link" hx-get="content/search.html">Search</span>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link" hx-get="content/volunteer.html"
+            >Volunteer</span
+          >
+        </li>
+        <li class="nav-item">
+          <span class="nav-link" hx-get="content/revoke.html">Revoke</span>
+        </li>
+      </ul>
+    </nav>
+    <main class="container py-3">
+      <h1 class="mb-3">PhD supchecker</h1>
       <div id="content">
         <input
           class="form-control"
           type="search"
           name="search"
-          placeholder="Search by name or orcid"
+          placeholder="Search by name or ORCID"
           oninput="{queryVolunteers(this.value)}"
         />
         <div id="search-results" class="row mt-3"></div>
